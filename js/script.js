@@ -173,17 +173,15 @@ const popupFormulaItemHint = () => {
                     ),
                     formulaItemIconInner = parentNode.querySelector(
                         ".formula-item__icon-inner"
-                    ),
-                    formulaText = formulaItemPopup.querySelector(".formula-text");
+                    );
+
+                formulaItemPopup.classList.add(
+                    `formula-item-popup--${isOutOfBrowser(formulaItemPopup) ? 'bottom' : 'top'}`);
+
                 formulaItemPopup.style.cssText = `visibility: visible;
-                                                  opacity: 1;`;
+                                                  opacity: 1;`;                                                  
                 formulaItemIconInner.style.cssText = `opacity: 1;`;
-                if (isOutOfBrowser(formulaItemPopup)) {
-                    formulaItemPopup.style.cssText += `transform: rotateX(180deg);
-                                                       top: 90px;`;
-                    formulaItemPopup.appendChild(formulaText);
-                    formulaText.style.cssText = `transform: rotateX(180deg);`;
-                }
+                parentNode.parentNode.style.zIndex = 2;
             }
         }
     });
@@ -202,6 +200,9 @@ const popupFormulaItemHint = () => {
                             ".formula-item__icon-inner"
                         ),
                         formulaText = formulaItemPopup.querySelector(".formula-text");
+                        formulaItemPopup.classList.remove('formula-item-popup--top', 'formula-item-popup--bottom');
+                        parentNode.parentNode.style.zIndex = '';
+
                     if (
                         formulaItemPopup.getAttribute("style") &&
                         formulaItemIconInner.getAttribute("style")
