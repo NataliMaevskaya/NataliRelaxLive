@@ -1133,7 +1133,7 @@ template,
   font-weight: 300;
   text-align: center;
   color: #000000;
-  z-index: 1;
+  z-index: 0;
 }
 .formula-item strong {
   font-weight: 500;
@@ -1310,7 +1310,6 @@ template,
     min-height: 118px;
   }
 }
-
 .formula-item-popup-02:before {
   position: absolute;
   top: 0;
