@@ -169,13 +169,11 @@ const popupFormulaItemHint = () => {
                 const parentNode = target.parentNode;
                 if (parentNode.matches('.formula-item__icon')) {
                     const formulaItemPopup = parentNode.querySelector('.formula-item-popup'),
-                        formulaItemIconInner = parentNode.querySelector('.formula-item__icon-inner'),
-                        formulaText = formulaItemPopup.querySelector('.formula-text');
-                    if(isOutOfBrowser(formulaItemPopup)) {
-                        //сделать after!?!??!
-                        formulaItemPopup.classList.add('rotateX180');
-                        formulaText.classList.add('rotateX180');
-                    } 
+                        formulaItemIconInner = parentNode.querySelector('.formula-item__icon-inner');
+
+                    formulaItemPopup.classList.add(
+                        `formula-item-popup--${isOutOfBrowser(formulaItemPopup) ? 'bottom' : 'top'}`);
+
                     // else {
                         formulaItemPopup.style.cssText = `visibility: visible !important;
                                                           opacity: 1 !important;`;
@@ -214,8 +212,8 @@ const popupFormulaItemHint = () => {
                     if (formulaItemPopup.getAttribute('style') && formulaItemIconInner.getAttribute('style')) {
                         formulaItemPopup.removeAttribute('style');
                         formulaItemIconInner.removeAttribute('style');
-                        formulaItemPopup.classList.remove('rotateX180');
-                        formulaText.classList.remove('rotateX180');
+                        formulaItemPopup.classList.remove('formula-item-popup--top');
+                        formulaItemPopup.classList.remove('formula-item-popup--bottom');
                     }
                 }
                 // const formulaItemPopup = target.querySelector('.formula-item-popup');
